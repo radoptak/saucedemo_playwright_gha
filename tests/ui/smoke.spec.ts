@@ -1,19 +1,27 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
+import { InventoryPage } from '../../pages/InventoryPage';
 
-test.describe('Authentication Flow', () => {
-  test('should login successfully with valid credentials', async ({ page }) => {
+test.describe('Smoke Tests - Basic E2E Flow', () => {
+  
+  test('should login and interact with inventory', async ({ page }) => {
     const loginPage = new LoginPage(page);
-
-    const username = process.env.SAUCE_USERNAME!;
-    const password = process.env.SAUCE_PASSWORD!;
+    const inventoryPage = new InventoryPage(page);
 
     await loginPage.goto();
-    await loginPage.login(username, password);
-    await expect(page).toHaveURL(/inventory.html/);
+    await loginPage.login(process.env.SAUCE_USERNAME!, process.env.SAUCE_PASSWORD!);
 
-    const inventoryHeader = page.locator('.title');
-    await expect(inventoryHeader).toBeVisible();
-    await expect(inventoryHeader).toHaveText('Products');
+    await inventoryPage.isDisplayed();
+    
+    const inventoryCount = await inventoryPage.getInventoryCount();
+    expect(inventoryCount).toBeGreaterThan(0);
+
+    const initialCartCount = await inventoryPage.getCartBadgeCount();
+    expect(initialCartCount).toBe(0);
+
+    await inventoryPage.addItemToCartByIndex(0);
+
+    const finalCartCount = await inventoryPage.getCartBadgeCount();
+    expect(finalCartCount).toBe(1);
   });
 });
