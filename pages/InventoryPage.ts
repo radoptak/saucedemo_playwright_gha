@@ -2,7 +2,7 @@ import { Locator, Page, expect } from '@playwright/test';
 
 export class InventoryPage {
   private readonly page: Page;
-  private readonly headerTitle: Locator;
+  readonly headerTitle: Locator;
   private readonly inventoryItems: Locator;
   private readonly shoppingCartBadge: Locator;
 
@@ -22,9 +22,9 @@ export class InventoryPage {
     return await this.inventoryItems.count();
   }
 
-  async addItemToCartByIndex(index: number = 0) {
-    const product = this.inventoryItems.nth(index);
-    await product.locator('button').click();
+ async addItemToCartById(productSlug: string) {
+    const addToCartButton = this.page.getByTestId(`add-to-cart-${productSlug}`);
+    await addToCartButton.click();
   }
 
   async getCartBadgeCount(): Promise<number> {
