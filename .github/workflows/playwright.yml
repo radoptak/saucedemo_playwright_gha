@@ -10,18 +10,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
+
       - name: Install dependencies
         run: npm ci
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+
+      # Extract Playwright version to use as a dynamic cache key
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: echo "VERSION=$(npm ls @playwright/test | grep @playwright/test | sed 's/.*@//')" >> $GITHUB_ENV
+
+      # Cache Playwright binaries based on OS and current Playwright version
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.VERSION }}
+
+      # If cache hit, install only OS dependencies (fast path)
+      - name: Install Playwright system dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+
+      # If cache miss, install browsers and OS dependencies from scratch
+      - name: Install Playwright browsers and dependencies
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install chromium --with-deps
+
       - name: Run Playwright tests
         run: npx playwright test
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
+
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
