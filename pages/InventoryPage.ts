@@ -1,28 +1,25 @@
-import { Locator, Page, expect } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 
 export class InventoryPage {
   private readonly page: Page;
   readonly headerTitle: Locator;
   private readonly inventoryItems: Locator;
   private readonly shoppingCartBadge: Locator;
+  readonly shoppingCartLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.headerTitle = page.locator('.title');
-    this.inventoryItems = page.locator('.inventory_item');
-    this.shoppingCartBadge = page.locator('.shopping_cart_badge');
-  }
-
-  async isDisplayed() {
-    await expect(this.headerTitle).toBeVisible();
-    await expect(this.headerTitle).toHaveText('Products');
+    this.headerTitle = page.getByTestId('title');
+    this.inventoryItems = page.getByTestId('inventory-item');
+    this.shoppingCartBadge = page.getByTestId('shopping-cart-badge');
+    this.shoppingCartLink = page.getByTestId('shopping-cart-link'); 
   }
 
   async getInventoryCount(): Promise<number> {
     return await this.inventoryItems.count();
   }
 
- async addItemToCartById(productSlug: string) {
+  async addItemToCartById(productSlug: string) {
     const addToCartButton = this.page.getByTestId(`add-to-cart-${productSlug}`);
     await addToCartButton.click();
   }
@@ -33,5 +30,9 @@ export class InventoryPage {
       return parseInt(text || '0', 10);
     }
     return 0;
+  }
+
+  async goToCart() {
+    await this.shoppingCartLink.click();
   }
 }
