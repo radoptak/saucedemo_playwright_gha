@@ -34,12 +34,12 @@ jobs:
       # If cache hit, install only OS dependencies (fast path)
       - name: Install Playwright system dependencies
         if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: npx playwright install-deps chromium
+        run: npx playwright install-deps
 
       # If cache miss, install browsers and OS dependencies from scratch
       - name: Install Playwright browsers and dependencies
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install chromium --with-deps
+        run: npx playwright install --with-deps
 
       - name: Run Playwright tests
         run: npx playwright test
