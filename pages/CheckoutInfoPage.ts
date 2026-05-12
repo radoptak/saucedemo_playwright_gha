@@ -2,6 +2,7 @@ import { Locator, Page } from '@playwright/test';
 
 export class CheckoutInfoPage {
   private readonly page: Page;
+  readonly errorMessage: Locator;
   readonly firstNameInput: Locator;
   readonly lastNameInput: Locator;
   readonly postalCodeInput: Locator;
@@ -9,6 +10,7 @@ export class CheckoutInfoPage {
 
   constructor(page: Page) {
     this.page = page;
+    this.errorMessage = page.getByTestId('error');
     this.firstNameInput = page.getByTestId('firstName');
     this.lastNameInput = page.getByTestId('lastName');
     this.postalCodeInput = page.getByTestId('postalCode');
