@@ -23,32 +23,34 @@ The framework utilizes Playwright Fixtures alongside the Page Object Model. Inst
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone <your-repo-url>
 
    ```
 
-````
 2. Install dependencies:
+
    ```bash
    npm install
-````
+   ```
 
 3. Install Playwright browsers:
+
    ```bash
    npx playwright install --with-deps
 
    ```
 
-````
-
 ### Environment Variables
+
 Create a `.env` file in the root directory and add the following credentials:
+
 ```text
 SAUCE_USERNAME=standard_user
 SAUCE_PASSWORD=secret_sauce
 GITHUB_TOKEN=your_github_token_here
-````
+```
 
 ## Running Tests
 
