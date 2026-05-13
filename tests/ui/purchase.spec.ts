@@ -53,8 +53,15 @@ test.describe('Purchase Flow', () => {
     await test.step('Review order and finish', async () => {
       const expectedProductName = PRODUCTS.BACKPACK.NAME;
       
-      await expect(page.getByTestId('inventory-item-name')).toHaveText(expectedProductName);
+      expect(overviewPage.itemName).toHaveText(expectedProductName);
       await overviewPage.clickFinish();
+    });
+
+    await test.step('Verify successful purchase complete', async () => {
+      await expect(completePage.completeHeader).toBeVisible();
+      await expect(completePage.completeHeader).toHaveText(UI_TEXTS.CHECKOUT_COMPLETE_HEADER);
+      
+      await expect(completePage.backHomeButton).toBeVisible(); 
     });
 
 
