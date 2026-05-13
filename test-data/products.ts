@@ -1,7 +1,7 @@
 export const PRODUCTS = {
   BACKPACK: {
     ID: 'sauce-labs-backpack',
-    NAME: 'Sauce Labs Backpack',
+    NAME: 'Labs Backpack',
   },
   BIKE_LIGHT: {
     ID: 'sauce-labs-bike-light',
