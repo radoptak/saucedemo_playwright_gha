@@ -1,12 +1,10 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../pages/LoginPage';
+import { test, expect } from '../../fixtures';
 import { INVALID_CREDENTIALS } from '../../test-data/user-data';
 import { UI_TEXTS } from '../../test-data/ui-texts';
 
 test.describe('Login Negative Paths', () => {
 
-  test('should display error for invalid credentials', async ({ page }) => {
-    const loginPage = new LoginPage(page);
+  test('should display error for invalid credentials', async ({ loginPage }) => {
 
     await test.step('Attempt login with invalid data', async () => {
       await loginPage.goto();
