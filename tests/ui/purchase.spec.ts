@@ -41,7 +41,7 @@ test.describe('Purchase Flow', () => {
     await test.step('Review order and finish', async () => {
       const expectedProductName = PRODUCTS.BACKPACK.NAME;
       
-      expect(overviewPage.itemName).toHaveText(expectedProductName);
+      await expect(overviewPage.itemName).toHaveText(expectedProductName);
       await overviewPage.clickFinish();
     });
 

@@ -49,7 +49,6 @@ Create a `.env` file in the root directory and add the following credentials:
 ```text
 SAUCE_USERNAME=standard_user
 SAUCE_PASSWORD=secret_sauce
-GITHUB_TOKEN=your_github_token_here
 ```
 
 ## Running Tests
