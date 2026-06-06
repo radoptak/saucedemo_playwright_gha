@@ -10,7 +10,7 @@ export class CartPage {
     this.page = page;
     this.headerTitle = page.getByTestId('title');
     this.checkoutButton = page.getByTestId('checkout');
-    this.cartItems = page.getByTestId('inventory-item'); 
+    this.cartItems = page.getByTestId('inventory-item');
   }
 
   getProductRemoveButton(productSlug: string): Locator {

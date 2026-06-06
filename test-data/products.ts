@@ -22,5 +22,5 @@ export const PRODUCTS = {
   T_SHIRT_RED: {
     ID: 'test.allthethings()-t-shirt-(red)',
     NAME: 'Test.allTheThings() T-Shirt (Red)',
-  }
+  },
 } as const;
