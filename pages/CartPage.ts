@@ -18,7 +18,7 @@ export class CartPage {
   }
 
   async removeProductById(productSlug: string): Promise<void> {
-  await this.getProductRemoveButton(productSlug).click();
+    await this.getProductRemoveButton(productSlug).click();
   }
 
   async clickCheckout(): Promise<void> {
