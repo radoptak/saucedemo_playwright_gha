@@ -9,6 +9,7 @@ The project demonstrates reliable browser-based testing using the Page Object Mo
 | Area                | Scenario                                                                            | Validation                                                                                  |
 | ------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | Authentication      | Login with invalid credentials.                                                     | Verifies that the expected error message is displayed.                                      |
+| Authentication      | Login with locked out user.                                                         | Verifies that login is blocked and the locked-out user error message is displayed.          |
 | Logout flow         | Log out a logged-in standard user.                                                  | Verifies that the user is redirected back to the login page.                                |
 | Checkout validation | Attempt checkout with empty customer information.                                   | Verifies that checkout is blocked and the required-field validation message is shown.       |
 | Inventory sorting   | Sort products by name from A to Z.                                                  | Verifies that products are displayed in ascending alphabetical order after sorting.         |
