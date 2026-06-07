@@ -13,7 +13,9 @@ test.describe('Purchase Flow', () => {
   }) => {
     await test.step('Verify environment readiness', async () => {
       await expect(loggedInInventoryPage.headerTitle).toHaveText(UI_TEXTS.INVENTORY_HEADER);
-      expect(await loggedInInventoryPage.getInventoryCount(), 'No products found!').toBeGreaterThan(0);
+      expect(await loggedInInventoryPage.getInventoryCount(), 'No products found!').toBeGreaterThan(
+        0,
+      );
       expect(await loggedInInventoryPage.getCartBadgeCount(), 'Cart not empty!').toBe(0);
     });
 
