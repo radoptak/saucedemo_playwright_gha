@@ -1,11 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
-import * as dotenv from 'dotenv';
+import { testEnv } from './config/testEnv';
 
-dotenv.config();
-
-if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_PASSWORD) {
-  throw new Error('Missing required credentials in ENV!');
-}
+void testEnv;
 
 export default defineConfig({
   testDir: './tests',
