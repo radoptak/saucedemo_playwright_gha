@@ -5,6 +5,7 @@ export class InventoryPage {
   readonly headerTitle: Locator;
   private readonly menuButton: Locator;
   private readonly logoutLink: Locator;
+  private readonly resetAppStateLink: Locator;
   private readonly inventoryItems: Locator;
   private readonly inventoryItemNames: Locator;
   private readonly shoppingCartBadge: Locator;
@@ -16,6 +17,7 @@ export class InventoryPage {
     this.headerTitle = page.getByTestId('title');
     this.menuButton = page.getByRole('button', { name: 'Open Menu' });
     this.logoutLink = page.getByTestId('logout-sidebar-link');
+    this.resetAppStateLink = page.getByTestId('reset-sidebar-link');
     this.inventoryItems = page.getByTestId('inventory-item');
     this.inventoryItemNames = page.getByTestId('inventory-item-name');
     this.shoppingCartBadge = page.getByTestId('shopping-cart-badge');
@@ -25,6 +27,11 @@ export class InventoryPage {
 
   async openMenu(): Promise<void> {
     await this.menuButton.click();
+  }
+
+  async resetAppState(): Promise<void> {
+    await this.openMenu();
+    await this.resetAppStateLink.click();
   }
 
   async logout(): Promise<void> {
