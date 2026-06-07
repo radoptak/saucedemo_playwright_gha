@@ -14,7 +14,7 @@ type MyFixtures = {
   overviewPage: CheckoutOverviewPage;
   completePage: CheckoutCompletePage;
 
-  standardUserPage: InventoryPage;
+  loggedInInventoryPage: InventoryPage;
 };
 
 export const test = baseTest.extend<MyFixtures>({
@@ -37,7 +37,7 @@ export const test = baseTest.extend<MyFixtures>({
     await use(new CheckoutCompletePage(page));
   },
 
-  standardUserPage: async ({ loginPage, inventoryPage }, use) => {
+  loggedInInventoryPage: async ({ loginPage, inventoryPage }, use) => {
     await baseTest.step('Setup: Automatic user login', async () => {
       await loginPage.goto();
       await loginPage.login(process.env.SAUCE_USERNAME!, process.env.SAUCE_PASSWORD!);

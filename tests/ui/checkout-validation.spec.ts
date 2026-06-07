@@ -5,16 +5,16 @@ import { EMPTY_CUSTOMER } from '../../test-data/user-data';
 
 test.describe('Checkout Validation', () => {
   test('should block checkout if user information is empty', async ({
-    standardUserPage,
+    loggedInInventoryPage,
     cartPage,
     infoPage,
   }) => {
     await test.step('Prepare cart', async () => {
-      await standardUserPage.addItemToCartById(PRODUCTS.BACKPACK.ID);
+      await loggedInInventoryPage.addItemToCartById(PRODUCTS.BACKPACK.ID);
     });
 
     await test.step('Navigate to checkout', async () => {
-      await standardUserPage.goToCart();
+      await loggedInInventoryPage.goToCart();
       await cartPage.clickCheckout();
     });
 
