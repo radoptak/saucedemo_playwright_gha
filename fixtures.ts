@@ -1,4 +1,5 @@
 import { test as baseTest, expect } from '@playwright/test';
+import { testEnv } from './config/testEnv';
 import { LoginPage } from './pages/LoginPage';
 import { InventoryPage } from './pages/InventoryPage';
 import { CartPage } from './pages/CartPage';
@@ -40,7 +41,7 @@ export const test = baseTest.extend<MyFixtures>({
   loggedInInventoryPage: async ({ loginPage, inventoryPage }, use) => {
     await baseTest.step('Setup: Automatic user login', async () => {
       await loginPage.goto();
-      await loginPage.login(process.env.SAUCE_USERNAME!, process.env.SAUCE_PASSWORD!);
+      await loginPage.login(testEnv.sauceUsername, testEnv.saucePassword);
       await expect(inventoryPage.headerTitle).toBeVisible();
     });
 
