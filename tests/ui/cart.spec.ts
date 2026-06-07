@@ -23,4 +23,24 @@ test.describe('Cart Flow', () => {
       await expect(cartPage.cartItems).toHaveCount(0);
     });
   });
+
+  test('should display multiple products in cart', async ({ loggedInInventoryPage, cartPage }) => {
+    await test.step('Add multiple products to cart', async () => {
+      await loggedInInventoryPage.addItemToCartById(PRODUCTS.BACKPACK.ID);
+      await loggedInInventoryPage.addItemToCartById(PRODUCTS.BIKE_LIGHT.ID);
+
+      expect(await loggedInInventoryPage.getCartBadgeCount()).toBe(2);
+    });
+
+    await test.step('Navigate to cart', async () => {
+      await loggedInInventoryPage.goToCart();
+      await expect(cartPage.headerTitle).toHaveText(UI_TEXTS.CART_HEADER);
+    });
+
+    await test.step('Verify selected products are visible in cart', async () => {
+      await expect(cartPage.cartItems).toHaveCount(2);
+      await expect(cartPage.getProductName(PRODUCTS.BACKPACK.NAME)).toBeVisible();
+      await expect(cartPage.getProductName(PRODUCTS.BIKE_LIGHT.NAME)).toBeVisible();
+    });
+  });
 });

@@ -17,6 +17,10 @@ export class CartPage {
     return this.page.getByTestId(`remove-${productSlug}`);
   }
 
+  getProductName(productName: string): Locator {
+    return this.page.getByText(productName, { exact: true });
+  }
+
   async removeProductById(productSlug: string): Promise<void> {
     await this.getProductRemoveButton(productSlug).click();
   }
