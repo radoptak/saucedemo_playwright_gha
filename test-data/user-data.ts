@@ -10,6 +10,11 @@ export const INVALID_CREDENTIALS = {
   PASSWORD: 'wrong_password',
 } as const;
 
+export const LOCKED_OUT_USER = {
+  USERNAME: 'locked_out_user',
+  PASSWORD: 'secret_sauce',
+} as const;
+
 export const EMPTY_CUSTOMER = {
   FIRST_NAME: '',
   LAST_NAME: '',
