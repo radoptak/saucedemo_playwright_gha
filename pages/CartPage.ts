@@ -17,6 +17,10 @@ export class CartPage {
     return this.page.getByTestId(`remove-${productSlug}`);
   }
 
+  async removeProductById(productSlug: string): Promise<void> {
+  await this.getProductRemoveButton(productSlug).click();
+  }
+
   async clickCheckout(): Promise<void> {
     await this.checkoutButton.click();
   }
