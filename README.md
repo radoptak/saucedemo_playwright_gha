@@ -192,5 +192,7 @@ The pipeline:
 ## Planned Improvements
 
 - Add visual regression coverage for selected UI states.
-- Introduce stored authentication state for tests that do not exercise authentication behaviour, while retaining dedicated login coverage.
+
+* Consider introducing stored authentication state for tests that do not directly validate login behaviour. This is intentionally left as a future improvement to keep the current UI portfolio project simple and easy to understand, while still demonstrating awareness of more advanced Playwright authentication patterns.
+
 - Expand negative path coverage for checkout and cart flows.
