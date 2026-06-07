@@ -12,6 +12,9 @@ The project demonstrates reliable browser-based testing using the Page Object Mo
 | Authentication      | Login with locked out user.                                                         | Verifies that login is blocked and the locked-out user error message is displayed.          |
 | Logout flow         | Log out a logged-in standard user.                                                  | Verifies that the user is redirected back to the login page.                                |
 | Checkout validation | Attempt checkout with empty customer information.                                   | Verifies that checkout is blocked and the required-field validation message is shown.       |
+| Checkout validation | Attempt checkout with missing first name.                                           | Verifies that checkout is blocked and the first-name validation message is shown.           |
+| Checkout validation | Attempt checkout with missing last name.                                            | Verifies that checkout is blocked and the last-name validation message is shown.            |
+| Checkout validation | Attempt checkout with missing postal code.                                          | Verifies that checkout is blocked and the postal-code validation message is shown.          |
 | Inventory sorting   | Sort products by name from A to Z.                                                  | Verifies that products are displayed in ascending alphabetical order after sorting.         |
 | Cart flow           | Remove a product from the cart.                                                     | Verifies that a product added to the cart can be removed and the cart becomes empty.        |
 | Reset app state     | Reset the application state after adding a product to the cart.                     | Verifies that the cart state is reset and the cart badge is cleared.                        |
