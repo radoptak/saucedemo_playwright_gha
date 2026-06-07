@@ -6,7 +6,6 @@ import { CheckoutInfoPage } from './pages/CheckoutInfoPage';
 import { CheckoutOverviewPage } from './pages/CheckoutOverviewPage';
 import { CheckoutCompletePage } from './pages/CheckoutCompletePage';
 
-
 type MyFixtures = {
   loginPage: LoginPage;
   inventoryPage: InventoryPage;
@@ -14,13 +13,11 @@ type MyFixtures = {
   infoPage: CheckoutInfoPage;
   overviewPage: CheckoutOverviewPage;
   completePage: CheckoutCompletePage;
-  
-  standardUserPage: InventoryPage; 
+
+  standardUserPage: InventoryPage;
 };
 
-
 export const test = baseTest.extend<MyFixtures>({
-  
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
   },
@@ -44,7 +41,7 @@ export const test = baseTest.extend<MyFixtures>({
     await baseTest.step('Setup: Automatic user login', async () => {
       await loginPage.goto();
       await loginPage.login(process.env.SAUCE_USERNAME!, process.env.SAUCE_PASSWORD!);
-      await expect(inventoryPage.headerTitle).toBeVisible(); 
+      await expect(inventoryPage.headerTitle).toBeVisible();
     });
 
     await use(inventoryPage);

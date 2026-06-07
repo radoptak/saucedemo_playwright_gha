@@ -12,7 +12,7 @@ export class InventoryPage {
     this.headerTitle = page.getByTestId('title');
     this.inventoryItems = page.getByTestId('inventory-item');
     this.shoppingCartBadge = page.getByTestId('shopping-cart-badge');
-    this.shoppingCartLink = page.getByTestId('shopping-cart-link'); 
+    this.shoppingCartLink = page.getByTestId('shopping-cart-link');
   }
 
   async getInventoryCount(): Promise<number> {

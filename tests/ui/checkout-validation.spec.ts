@@ -4,13 +4,11 @@ import { UI_TEXTS } from '../../test-data/ui-texts';
 import { EMPTY_CUSTOMER } from '../../test-data/user-data';
 
 test.describe('Checkout Validation', () => {
-
-  test('should block checkout if user information is empty', async ({ 
-    standardUserPage, 
-    cartPage, 
-    infoPage
-   }) => {
-    
+  test('should block checkout if user information is empty', async ({
+    standardUserPage,
+    cartPage,
+    infoPage,
+  }) => {
     await test.step('Prepare cart', async () => {
       await standardUserPage.addItemToCartById(PRODUCTS.BACKPACK.ID);
     });
@@ -22,9 +20,9 @@ test.describe('Checkout Validation', () => {
 
     await test.step('Submit empty form', async () => {
       await infoPage.fillInformation(
-        EMPTY_CUSTOMER.FIRST_NAME, 
-        EMPTY_CUSTOMER.LAST_NAME, 
-        EMPTY_CUSTOMER.POSTAL_CODE
+        EMPTY_CUSTOMER.FIRST_NAME,
+        EMPTY_CUSTOMER.LAST_NAME,
+        EMPTY_CUSTOMER.POSTAL_CODE,
       );
     });
 
@@ -33,5 +31,4 @@ test.describe('Checkout Validation', () => {
       await expect(infoPage.errorMessage).toContainText(UI_TEXTS.CHECKOUT_ERROR_FIRST_NAME);
     });
   });
-
 });
