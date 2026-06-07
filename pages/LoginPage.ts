@@ -5,7 +5,7 @@ export class LoginPage {
   readonly errorMessage: Locator;
   private readonly usernameInput: Locator;
   private readonly passwordInput: Locator;
-  private readonly loginButton: Locator;
+  readonly loginButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
