@@ -17,6 +17,7 @@ The project demonstrates reliable browser-based testing using the Page Object Mo
 | Checkout validation | Attempt checkout with missing postal code.                                          | Verifies that checkout is blocked and the postal-code validation message is shown.          |
 | Inventory sorting   | Sort products by name from A to Z.                                                  | Verifies that products are displayed in ascending alphabetical order after sorting.         |
 | Cart flow           | Remove a product from the cart.                                                     | Verifies that a product added to the cart can be removed and the cart becomes empty.        |
+| Cart flow           | Add multiple products to the cart.                                                  | Verifies that the cart badge and cart contents reflect all selected products.               |
 | Reset app state     | Reset the application state after adding a product to the cart.                     | Verifies that the cart state is reset and the cart badge is cleared.                        |
 | Purchase flow       | Complete a purchase from an authenticated inventory state to the confirmation page. | Verifies cart state, selected product on the overview page and successful order completion. |
 
