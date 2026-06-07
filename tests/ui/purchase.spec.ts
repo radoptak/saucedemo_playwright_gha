@@ -4,7 +4,7 @@ import { UI_TEXTS } from '../../test-data/ui-texts';
 import { CUSTOMER_DATA } from '../../test-data/user-data';
 
 test.describe('Purchase Flow', () => {
-  test('should complete a purchase from login to thank you page', async ({
+  test('should complete a purchase for a logged-in standard user', async ({
     loggedInInventoryPage,
     cartPage,
     infoPage,
@@ -27,7 +27,7 @@ test.describe('Purchase Flow', () => {
       await expect(cartPage.getProductRemoveButton(PRODUCTS.BACKPACK.ID)).toBeVisible();
     });
 
-    await test.step('Fill checkout information', async () => {
+    await test.step('Submit checkout information', async () => {
       await cartPage.clickCheckout();
       await infoPage.submitInformation(
         CUSTOMER_DATA.FIRST_NAME,
