@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { type Locator, type Page } from '@playwright/test';
 
 export class InventoryPage {
   private readonly page: Page;
@@ -16,10 +16,10 @@ export class InventoryPage {
   }
 
   async getInventoryCount(): Promise<number> {
-    return await this.inventoryItems.count();
+    return this.inventoryItems.count();
   }
 
-  async addItemToCartById(productSlug: string) {
+  async addItemToCartById(productSlug: string): Promise<void> {
     const addToCartButton = this.page.getByTestId(`add-to-cart-${productSlug}`);
     await addToCartButton.click();
   }
@@ -29,10 +29,11 @@ export class InventoryPage {
       const text = await this.shoppingCartBadge.textContent();
       return parseInt(text || '0', 10);
     }
+
     return 0;
   }
 
-  async goToCart() {
+  async goToCart(): Promise<void> {
     await this.shoppingCartLink.click();
   }
 }

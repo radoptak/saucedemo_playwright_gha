@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { type Locator, type Page } from '@playwright/test';
 
 export class CheckoutOverviewPage {
   private readonly page: Page;
@@ -11,7 +11,7 @@ export class CheckoutOverviewPage {
     this.itemName = page.getByTestId('inventory-item-name');
   }
 
-  async clickFinish() {
+  async clickFinish(): Promise<void> {
     await this.finishButton.click();
   }
 }

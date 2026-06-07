@@ -4,32 +4,34 @@ import { UI_TEXTS } from '../../test-data/ui-texts';
 import { CUSTOMER_DATA } from '../../test-data/user-data';
 
 test.describe('Purchase Flow', () => {
-  test('should complete a purchase from login to thank you page', async ({
-    standardUserPage,
+  test('should complete a purchase for a logged-in standard user', async ({
+    loggedInInventoryPage,
     cartPage,
     infoPage,
     overviewPage,
     completePage,
   }) => {
     await test.step('Verify environment readiness', async () => {
-      await expect(standardUserPage.headerTitle).toHaveText(UI_TEXTS.INVENTORY_HEADER);
-      expect(await standardUserPage.getInventoryCount(), 'No products found!').toBeGreaterThan(0);
-      expect(await standardUserPage.getCartBadgeCount(), 'Cart not empty!').toBe(0);
+      await expect(loggedInInventoryPage.headerTitle).toHaveText(UI_TEXTS.INVENTORY_HEADER);
+      expect(await loggedInInventoryPage.getInventoryCount(), 'No products found!').toBeGreaterThan(
+        0,
+      );
+      expect(await loggedInInventoryPage.getCartBadgeCount(), 'Cart not empty!').toBe(0);
     });
 
     await test.step('Add product and navigate to cart', async () => {
-      await standardUserPage.addItemToCartById(PRODUCTS.BACKPACK.ID);
-      expect(await standardUserPage.getCartBadgeCount()).toBe(1);
+      await loggedInInventoryPage.addItemToCartById(PRODUCTS.BACKPACK.ID);
+      expect(await loggedInInventoryPage.getCartBadgeCount()).toBe(1);
 
-      await standardUserPage.goToCart();
+      await loggedInInventoryPage.goToCart();
       await expect(cartPage.headerTitle).toBeVisible();
       await expect(cartPage.headerTitle).toHaveText(UI_TEXTS.CART_HEADER);
       await expect(cartPage.getProductRemoveButton(PRODUCTS.BACKPACK.ID)).toBeVisible();
     });
 
-    await test.step('Fill checkout information', async () => {
+    await test.step('Submit checkout information', async () => {
       await cartPage.clickCheckout();
-      await infoPage.fillInformation(
+      await infoPage.submitInformation(
         CUSTOMER_DATA.FIRST_NAME,
         CUSTOMER_DATA.LAST_NAME,
         CUSTOMER_DATA.POSTAL_CODE,
