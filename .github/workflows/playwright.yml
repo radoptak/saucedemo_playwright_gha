@@ -6,8 +6,10 @@ on:
     branches: [main, master]
 jobs:
   test:
-    timeout-minutes: 60
+    timeout-minutes: 30
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-noble
     steps:
       - uses: actions/checkout@v4
 
@@ -22,39 +24,11 @@ jobs:
       - name: Run TypeScript typecheck
         run: npm run typecheck
 
-      # Extract Playwright version to use as a dynamic cache key
-      - name: Get installed Playwright version
-        id: playwright-version
-        run: echo "version=$(npm ls @playwright/test | grep @playwright/test | sed 's/.*@//')" >> "$GITHUB_OUTPUT"
+      - name: Run ESLint
+        run: npm run lint
 
-      # Cache Playwright binaries based on OS and current Playwright version
-      - name: Cache Playwright browsers
-        uses: actions/cache@v4
-        id: playwright-cache
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
-      - name: Print Playwright cache status
-        run: |
-          echo "Cache hit: ${{ steps.playwright-cache.outputs.cache-hit }}"
-          echo "Playwright version: ${{ steps.playwright-version.outputs.version }}"
-
-      # If cache hit, install only OS dependencies (fast path)
-      - name: Install Playwright system dependencies
-        if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: npx playwright install-deps
-
-      # If cache miss, install browsers and OS dependencies from scratch
-      - name: Install Playwright browsers and dependencies
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: |
-          echo "Playwright cache miss - installing browsers and dependencies"
-          echo "Playwright version: ${{ steps.playwright-version.outputs.version }}"
-          echo "Cache path before install:"
-          ls -la ~/.cache/ms-playwright || true
-          npx playwright install --with-deps
-          echo "Cache path after install:"
-          ls -la ~/.cache/ms-playwright || true
+      - name: Check formatting
+        run: npm run format:check
 
       - name: Run Playwright tests
         run: npm test
