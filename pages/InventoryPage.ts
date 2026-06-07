@@ -5,6 +5,7 @@ export class InventoryPage {
   readonly headerTitle: Locator;
   private readonly inventoryItems: Locator;
   private readonly shoppingCartBadge: Locator;
+  private readonly sortDropdown: Locator;
   readonly shoppingCartLink: Locator;
 
   constructor(page: Page) {
@@ -12,12 +13,17 @@ export class InventoryPage {
     this.headerTitle = page.getByTestId('title');
     this.inventoryItems = page.getByTestId('inventory-item');
     this.shoppingCartBadge = page.getByTestId('shopping-cart-badge');
+    this.sortDropdown = page.getByTestId('product-sort-container');
     this.shoppingCartLink = page.getByTestId('shopping-cart-link');
   }
 
   async getInventoryCount(): Promise<number> {
     return this.inventoryItems.count();
   }
+
+  async sortProductsBy(option: string): Promise<void> {
+  await this.sortDropdown.selectOption(option);
+}
 
   async addItemToCartById(productSlug: string): Promise<void> {
     const addToCartButton = this.page.getByTestId(`add-to-cart-${productSlug}`);
