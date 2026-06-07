@@ -4,7 +4,7 @@ export class InventoryPage {
   private readonly page: Page;
   readonly headerTitle: Locator;
   private readonly menuButton: Locator;
-private readonly logoutLink: Locator;
+  private readonly logoutLink: Locator;
   private readonly inventoryItems: Locator;
   private readonly inventoryItemNames: Locator;
   private readonly shoppingCartBadge: Locator;
@@ -30,7 +30,7 @@ private readonly logoutLink: Locator;
   async logout(): Promise<void> {
     await this.openMenu();
     await this.logoutLink.click();
-}
+  }
 
   async getInventoryCount(): Promise<number> {
     return this.inventoryItems.count();
