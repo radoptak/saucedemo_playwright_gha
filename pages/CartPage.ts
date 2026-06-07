@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { type Locator, type Page } from '@playwright/test';
 
 export class CartPage {
   private readonly page: Page;
@@ -17,7 +17,7 @@ export class CartPage {
     return this.page.getByTestId(`remove-${productSlug}`);
   }
 
-  async clickCheckout() {
+  async clickCheckout(): Promise<void> {
     await this.checkoutButton.click();
   }
 }
