@@ -29,7 +29,7 @@ test.describe('Purchase Flow', () => {
 
     await test.step('Fill checkout information', async () => {
       await cartPage.clickCheckout();
-      await infoPage.fillInformation(
+      await infoPage.submitInformation(
         CUSTOMER_DATA.FIRST_NAME,
         CUSTOMER_DATA.LAST_NAME,
         CUSTOMER_DATA.POSTAL_CODE,

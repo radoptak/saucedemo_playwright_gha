@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { type Locator, type Page } from '@playwright/test';
 
 export class CheckoutInfoPage {
   private readonly page: Page;
@@ -17,7 +17,7 @@ export class CheckoutInfoPage {
     this.continueButton = page.getByTestId('continue');
   }
 
-  async fillInformation(firstName: string, lastName: string, postalCode: string) {
+  async submitInformation(firstName: string, lastName: string, postalCode: string): Promise<void> {
     await this.firstNameInput.fill(firstName);
     await this.lastNameInput.fill(lastName);
     await this.postalCodeInput.fill(postalCode);

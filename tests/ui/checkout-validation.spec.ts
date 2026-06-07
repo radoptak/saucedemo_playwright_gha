@@ -19,7 +19,7 @@ test.describe('Checkout Validation', () => {
     });
 
     await test.step('Submit empty form', async () => {
-      await infoPage.fillInformation(
+      await infoPage.submitInformation(
         EMPTY_CUSTOMER.FIRST_NAME,
         EMPTY_CUSTOMER.LAST_NAME,
         EMPTY_CUSTOMER.POSTAL_CODE,
