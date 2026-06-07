@@ -11,6 +11,7 @@ test.describe('Checkout Validation', () => {
   }) => {
     await test.step('Prepare cart', async () => {
       await loggedInInventoryPage.addItemToCartById(PRODUCTS.BACKPACK.ID);
+      expect(await loggedInInventoryPage.getCartBadgeCount()).toBe(1);
     });
 
     await test.step('Navigate to checkout', async () => {
