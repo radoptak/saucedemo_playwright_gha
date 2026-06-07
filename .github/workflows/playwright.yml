@@ -33,6 +33,7 @@ jobs:
       - name: Run Playwright tests
         run: npm test
         env:
+          HOME: /root
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
 
