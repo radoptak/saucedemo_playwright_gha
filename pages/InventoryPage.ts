@@ -24,12 +24,12 @@ export class InventoryPage {
   }
 
   async sortProductsBy(option: string): Promise<void> {
-  await this.sortDropdown.selectOption(option);
-}
+    await this.sortDropdown.selectOption(option);
+  }
 
-async getProductNames(): Promise<string[]> {
-  return this.inventoryItemNames.allTextContents();
-}
+  async getProductNames(): Promise<string[]> {
+    return this.inventoryItemNames.allTextContents();
+  }
 
   async addItemToCartById(productSlug: string): Promise<void> {
     const addToCartButton = this.page.getByTestId(`add-to-cart-${productSlug}`);

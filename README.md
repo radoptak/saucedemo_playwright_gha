@@ -10,6 +10,7 @@ The project demonstrates reliable browser-based testing using the Page Object Mo
 | ------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | Authentication      | Login with invalid credentials.                                                     | Verifies that the expected error message is displayed.                                      |
 | Checkout validation | Attempt checkout with empty customer information.                                   | Verifies that checkout is blocked and the required-field validation message is shown.       |
+| Inventory sorting   | Sort products by name from A to Z.                                                  | Verifies that products are displayed in ascending alphabetical order after sorting.         |
 | Cart flow           | Remove a product from the cart.                                                     | Verifies that a product added to the cart can be removed and the cart becomes empty.        |
 | Purchase flow       | Complete a purchase from an authenticated inventory state to the confirmation page. | Verifies cart state, selected product on the overview page and successful order completion. |
 
