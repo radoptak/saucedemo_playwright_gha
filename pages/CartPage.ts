@@ -3,7 +3,7 @@ import { type Locator, type Page } from '@playwright/test';
 export class CartPage {
   private readonly page: Page;
   readonly headerTitle: Locator;
-  readonly checkoutButton: Locator;
+  private readonly checkoutButton: Locator;
   readonly cartItems: Locator;
 
   constructor(page: Page) {
@@ -13,7 +13,7 @@ export class CartPage {
     this.cartItems = page.getByTestId('inventory-item');
   }
 
-  getProductRemoveButton(productSlug: string): Locator {
+  private getProductRemoveButton(productSlug: string): Locator {
     return this.page.getByTestId(`remove-${productSlug}`);
   }
 
