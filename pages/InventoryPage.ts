@@ -10,7 +10,7 @@ export class InventoryPage {
   private readonly inventoryItemNames: Locator;
   private readonly shoppingCartBadge: Locator;
   private readonly sortDropdown: Locator;
-  readonly shoppingCartLink: Locator;
+  private readonly shoppingCartLink: Locator;
 
   constructor(page: Page) {
     this.page = page;

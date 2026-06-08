@@ -3,10 +3,10 @@ import { type Locator, type Page } from '@playwright/test';
 export class CheckoutInfoPage {
   private readonly page: Page;
   readonly errorMessage: Locator;
-  readonly firstNameInput: Locator;
-  readonly lastNameInput: Locator;
-  readonly postalCodeInput: Locator;
-  readonly continueButton: Locator;
+  private readonly firstNameInput: Locator;
+  private readonly lastNameInput: Locator;
+  private readonly postalCodeInput: Locator;
+  private readonly continueButton: Locator;
 
   constructor(page: Page) {
     this.page = page;

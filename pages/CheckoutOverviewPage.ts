@@ -2,7 +2,7 @@ import { type Locator, type Page } from '@playwright/test';
 
 export class CheckoutOverviewPage {
   private readonly page: Page;
-  readonly finishButton: Locator;
+  private readonly finishButton: Locator;
   readonly itemName: Locator;
 
   constructor(page: Page) {

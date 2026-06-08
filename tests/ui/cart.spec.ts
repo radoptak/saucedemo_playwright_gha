@@ -12,7 +12,7 @@ test.describe('Cart Flow', () => {
     await test.step('Navigate to cart', async () => {
       await loggedInInventoryPage.goToCart();
       await expect(cartPage.headerTitle).toHaveText(UI_TEXTS.CART_HEADER);
-      await expect(cartPage.getProductRemoveButton(PRODUCTS.BACKPACK.ID)).toBeVisible();
+      await expect(cartPage.getProductName(PRODUCTS.BACKPACK.NAME)).toBeVisible();
     });
 
     await test.step('Remove product from cart', async () => {

@@ -26,7 +26,7 @@ test.describe('Purchase Flow', () => {
       await loggedInInventoryPage.goToCart();
       await expect(cartPage.headerTitle).toBeVisible();
       await expect(cartPage.headerTitle).toHaveText(UI_TEXTS.CART_HEADER);
-      await expect(cartPage.getProductRemoveButton(PRODUCTS.BACKPACK.ID)).toBeVisible();
+      await expect(cartPage.getProductName(PRODUCTS.BACKPACK.NAME)).toBeVisible();
     });
 
     await test.step('Submit checkout information', async () => {
