@@ -2,7 +2,18 @@
 
 A portfolio-focused end-to-end UI test automation framework for the [SauceDemo](https://www.saucedemo.com/) web application, built with Playwright and TypeScript.
 
-The project demonstrates reliable browser-based testing using the Page Object Model, custom Playwright fixtures, cross-browser execution, TypeScript validation, automated code quality checks and continuous integration with GitHub Actions.
+The project demonstrates reliable browser-based testing using the Page Object Model, custom Playwright fixtures, centralized test data, cross-browser execution, TypeScript validation, automated code quality checks and continuous integration with GitHub Actions.
+
+## What This Project Demonstrates
+
+- End-to-end UI test automation with Playwright and TypeScript.
+- Page Object Model usage for readable and maintainable test code.
+- Custom fixtures for reusable page objects and authenticated test setup.
+- Cross-browser execution against Chromium, Firefox and WebKit.
+- Data-driven validation for checkout form scenarios.
+- Fail-fast environment validation for required test credentials.
+- CI quality gate with type checking, linting, formatting and test execution.
+- Stable GitHub Actions execution using the official Playwright Docker image.
 
 ## Test Coverage
 
@@ -26,7 +37,8 @@ The project demonstrates reliable browser-based testing using the Page Object Mo
 - **Test framework:** Playwright Test.
 - **Language:** TypeScript.
 - **Architecture:** Page Object Model with custom Playwright fixtures.
-- **Test data management:** Centralized test data files.
+- **Test data management:** Centralized test input and expected UI text files.
+- **Environment configuration:** Fail-fast validation of required credentials.
 - **Code quality:** ESLint and Prettier.
 - **CI/CD:** GitHub Actions.
 - **CI runtime:** Official Playwright Docker image.
@@ -37,6 +49,7 @@ The project demonstrates reliable browser-based testing using the Page Object Mo
 ```text
 .
 ├── .github/workflows/        # GitHub Actions workflow
+├── config/                   # Test environment loading and validation
 ├── pages/                    # Page Object Model classes
 ├── test-data/                # Reusable test input and expected UI data
 ├── tests/ui/                 # End-to-end UI test specifications
@@ -52,17 +65,29 @@ The project demonstrates reliable browser-based testing using the Page Object Mo
 
 UI selectors and page-level actions are encapsulated in page objects.
 
-Test specifications focus on user behaviour and assertions instead of repeating implementation details.
+Test specifications focus on user behaviour and assertions instead of repeating implementation details. Action-oriented locators, such as checkout or remove buttons, are kept private where possible and exposed through intention-revealing methods.
 
 ### Custom Fixtures
 
-The framework extends Playwright fixtures with reusable page objects and an authenticated `standardUserPage` fixture.
+The framework extends Playwright fixtures with reusable page objects and an authenticated `loggedInInventoryPage` fixture.
 
 This fixture prepares a logged-in inventory state for tests that do not need to verify the login flow itself.
 
+### Test Data
+
+Reusable test input and expected UI messages are centralized in dedicated test data files.
+
+This keeps test specifications focused on behaviour and makes it easier to update static test data without changing the test flow.
+
+### Environment Validation
+
+Required SauceDemo credentials are loaded from environment variables and validated before authenticated tests run.
+
+This follows a fail-fast approach: if required configuration is missing, the test suite stops with a clear error instead of failing later during UI interactions.
+
 ### Reliable Assertions
 
-Assertions are awaited and placed at meaningful business checkpoints, such as validating the selected product before completing a purchase.
+Assertions are awaited and placed at meaningful business checkpoints, such as validating cart state, checkout validation messages and the selected product before completing a purchase.
 
 This helps reduce the risk of false-positive test results.
 
@@ -192,7 +217,5 @@ The pipeline:
 ## Planned Improvements
 
 - Add visual regression coverage for selected UI states.
-
-* Consider introducing stored authentication state for tests that do not directly validate login behaviour. This is intentionally left as a future improvement to keep the current UI portfolio project simple and easy to understand, while still demonstrating awareness of more advanced Playwright authentication patterns.
-
-- Expand negative path coverage for checkout and cart flows.
+- Consider introducing stored authentication state for tests that do not directly validate login behaviour. This is intentionally left as a future improvement to keep the current UI portfolio project simple and easy to understand, while still demonstrating awareness of more advanced Playwright authentication patterns.
+- Add more advanced cart and checkout scenarios, such as price validation or end-to-end order summary verification.
